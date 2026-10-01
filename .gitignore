@@ -1,0 +1,12 @@
+.playwright-cli/
+tools/audit/out/
+tools/audit/node_modules/
+design-references/
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+scrape/
+.env*
+!.env.example
+496066439_*.jpg

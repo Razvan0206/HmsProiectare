@@ -1,0 +1,52 @@
+import { site } from "@/content/site";
+
+export function Contact() {
+  const c = site.contact;
+  const row = "grid gap-1 border-t-2 border-ink py-5 sm:grid-cols-[9rem_1fr] sm:gap-6";
+  return (
+    <section id="contact" className="tone-brand px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-6">
+          <span className="block h-1.5 w-14 bg-ink" aria-hidden />
+          <h2 className="display mt-6 text-[clamp(1.875rem,4.2vw,3.5rem)]">{c.title}</h2>
+          <p className="mt-6 max-w-[44ch] text-lg">{c.text}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={site.phoneHref} className="btn btn-ink">
+              {site.phone}
+            </a>
+            <a href={`mailto:${site.email}`} className="btn btn-line">
+              {site.email}
+            </a>
+          </div>
+        </div>
+        <dl className="lg:col-span-6">
+          <div className={row}>
+            <dt className="label">{c.addressLabel}</dt>
+            <dd>
+              {site.street}, {site.zip} {site.city}
+              <br />
+              <a href={site.mapsHref} target="_blank" rel="noopener noreferrer" className="inline-block py-3 font-semibold underline underline-offset-4">
+                {c.mapsLabel}
+              </a>
+            </dd>
+          </div>
+          <div className={row}>
+            <dt className="label">{c.hoursLabel}</dt>
+            <dd>{site.hours ?? site.hoursPlaceholder}</dd>
+          </div>
+          <div className={row}>
+            <dt className="label">{c.socialLabel}</dt>
+            <dd className="flex flex-wrap gap-x-6 gap-y-1 font-semibold">
+              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-block py-2.5 underline underline-offset-4">
+                {c.whatsappLabel}
+              </a>
+              <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="inline-block py-2.5 underline underline-offset-4">
+                {c.facebookLabel}
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  );
+}

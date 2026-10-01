@@ -1,0 +1,341 @@
+{
+ "casa-g": [
+  {
+   "src": "/projects/casa-g/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-g/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-g/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-g/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-g/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-g/06.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "casa-p": [
+  {
+   "src": "/projects/casa-p/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-p/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-p/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-p/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-p/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-p/06.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "duplex-p-1e": [
+  {
+   "src": "/projects/duplex-p-1e/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/duplex-p-1e/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/duplex-p-1e/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/duplex-p-1e/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/duplex-p-1e/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/duplex-p-1e/06.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "bloc-penthouse": [
+  {
+   "src": "/projects/bloc-penthouse/01.webp",
+   "w": 1024,
+   "h": 765
+  },
+  {
+   "src": "/projects/bloc-penthouse/02.webp",
+   "w": 1024,
+   "h": 685
+  },
+  {
+   "src": "/projects/bloc-penthouse/03.webp",
+   "w": 1024,
+   "h": 685
+  },
+  {
+   "src": "/projects/bloc-penthouse/04.webp",
+   "w": 1024,
+   "h": 765
+  },
+  {
+   "src": "/projects/bloc-penthouse/05.webp",
+   "w": 768,
+   "h": 768
+  },
+  {
+   "src": "/projects/bloc-penthouse/06.webp",
+   "w": 1024,
+   "h": 685
+  }
+ ],
+ "bloc-anl": [
+  {
+   "src": "/projects/bloc-anl/01.webp",
+   "w": 1024,
+   "h": 674
+  },
+  {
+   "src": "/projects/bloc-anl/02.webp",
+   "w": 1024,
+   "h": 466
+  },
+  {
+   "src": "/projects/bloc-anl/03.webp",
+   "w": 1024,
+   "h": 541
+  },
+  {
+   "src": "/projects/bloc-anl/04.webp",
+   "w": 1024,
+   "h": 418
+  }
+ ],
+ "penthouse-bourgeois": [
+  {
+   "src": "/projects/penthouse-bourgeois/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/penthouse-bourgeois/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/penthouse-bourgeois/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/penthouse-bourgeois/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/penthouse-bourgeois/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/penthouse-bourgeois/06.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "picasso-lounge": [
+  {
+   "src": "/projects/picasso-lounge/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/picasso-lounge/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/picasso-lounge/03.webp",
+   "w": 1024,
+   "h": 1365
+  },
+  {
+   "src": "/projects/picasso-lounge/04.webp",
+   "w": 1024,
+   "h": 1365
+  },
+  {
+   "src": "/projects/picasso-lounge/05.webp",
+   "w": 1024,
+   "h": 1365
+  }
+ ],
+ "waterhouse": [
+  {
+   "src": "/projects/waterhouse/01.webp",
+   "w": 1024,
+   "h": 768
+  },
+  {
+   "src": "/projects/waterhouse/02.webp",
+   "w": 1024,
+   "h": 768
+  },
+  {
+   "src": "/projects/waterhouse/03.webp",
+   "w": 1024,
+   "h": 1365
+  },
+  {
+   "src": "/projects/waterhouse/04.webp",
+   "w": 1024,
+   "h": 1365
+  }
+ ],
+ "hai-extrusion": [
+  {
+   "src": "/projects/hai-extrusion/01.webp",
+   "w": 1024,
+   "h": 597
+  },
+  {
+   "src": "/projects/hai-extrusion/02.webp",
+   "w": 1024,
+   "h": 597
+  },
+  {
+   "src": "/projects/hai-extrusion/03.webp",
+   "w": 1024,
+   "h": 597
+  },
+  {
+   "src": "/projects/hai-extrusion/04.webp",
+   "w": 1024,
+   "h": 682
+  },
+  {
+   "src": "/projects/hai-extrusion/05.webp",
+   "w": 1024,
+   "h": 597
+  }
+ ],
+ "hala-dumbravita": [
+  {
+   "src": "/projects/hala-dumbravita/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/hala-dumbravita/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/hala-dumbravita/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/hala-dumbravita/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/hala-dumbravita/05.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "birouri-oradea": [
+  {
+   "src": "/projects/birouri-oradea/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/birouri-oradea/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/birouri-oradea/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/birouri-oradea/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/birouri-oradea/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/birouri-oradea/06.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "piata-agroalimentara": [
+  {
+   "src": "/projects/piata-agroalimentara/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/piata-agroalimentara/02.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/piata-agroalimentara/03.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/piata-agroalimentara/04.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "site-audit-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Headless-Chrome audit scripts for local Next.js sites (see README.md)",
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}
