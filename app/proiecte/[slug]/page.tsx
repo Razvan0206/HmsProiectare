@@ -52,7 +52,10 @@ export default async function ProjectPage(props: PageProps<"/proiecte/[slug]">) 
               <dd>Finalizat</dd>
             </dl>
           </div>
-          <p className="mt-6 border-l-4 border-brand pl-4 text-muted">{site.projects.detailPlaceholder}</p>
+          <p className="mt-8 max-w-[58ch] text-muted">
+            <span className="rule mb-3" aria-hidden />
+            {site.projects.detailPlaceholder}
+          </p>
         </div>
       </section>
 

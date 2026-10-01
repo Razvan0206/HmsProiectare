@@ -13,7 +13,10 @@ export function About() {
               <p key={t}>{t}</p>
             ))}
           </div>
-          <p className="mt-6 border-l-4 border-brand pl-4 text-muted-on-ink">{a.teamNote}</p>
+          <p className="mt-8 max-w-[58ch] text-muted-on-ink">
+            <span className="rule mb-3" aria-hidden />
+            {a.teamNote}
+          </p>
         </div>
         <div className="lg:col-span-6">
           <h3 className="label text-muted-on-ink">{a.credentialsTitle}</h3>
