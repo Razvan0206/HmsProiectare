@@ -65,12 +65,6 @@ export const site = {
     { value: 2, label: "certificări ISO: 9001 și 14001" },
   ],
 
-  marquee: {
-    label: "Documentații și servicii",
-    pause: "Oprește animația",
-    items: ["DTAC", "DTOE", "Proiect tehnic", "Studiu de fezabilitate", "Releveu", "PUZ", "Randări 3D", "Design interior", "Urmărire șantier", "Management de proiect", "Construcții"],
-  },
-
   services: {
     title: "Ce facem",
     intro: "Aceeași echipă preia lucrarea de la prima schiță până la urmărirea șantierului.",

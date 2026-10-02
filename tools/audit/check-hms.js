@@ -32,10 +32,6 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     assert.equal(await visible(), 3, "3 interior projects");
     await page.evaluate(() => document.getElementById("f-toate").click());
     assert.equal(await visible(), 15, "filter reset");
-    // marquee pause control
-    await page.evaluate(() => document.getElementById("mq-pause").click());
-    assert.equal(await page.$eval(".mq-track", (e) => getComputedStyle(e).animationPlayState), "paused", "marquee pauses");
-    await page.evaluate(() => document.getElementById("mq-pause").click());
     // lightbox: open, arrow key, Escape
     await page.goto(BASE + "proiecte/casa-h", { waitUntil: "networkidle0" });
     await page.click(".shot");
@@ -48,11 +44,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     assert(!(await page.$eval("dialog.lightbox", (d) => d.open)), "Escape closes lightbox");
     console.log(`${w}px ok`);
   }
-  // reduced motion: no keyframe motion on hero, marquee or progress
+  // reduced motion: no keyframe motion on the hero
   const rm = await browser.newPage();
   await rm.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
   await rm.goto(BASE, { waitUntil: "networkidle0" });
-  for (const sel of [".hero-img", ".mq-track", ".line > span", ".hero-in"]) assert.equal(await rm.$eval(sel, (e) => getComputedStyle(e).animationName), "none", `${sel} static under reduced motion`);
+  for (const sel of [".hero-img", ".line > span", ".hero-in"]) assert.equal(await rm.$eval(sel, (e) => getComputedStyle(e).animationName), "none", `${sel} static under reduced motion`);
   console.log("reduced motion ok");
   await browser.close();
 })().catch((e) => { console.error("FAIL:", e.message); process.exit(1); });

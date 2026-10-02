@@ -220,64 +220,6 @@
     transform-origin: 50% 100%;
   }
 
-  /* ---------- marquee (one per page; pause control and reduced motion both stop it) ---------- */
-  .mq {
-    position: relative;
-    overflow: hidden;
-  }
-  .mq-track {
-    display: flex;
-    width: max-content;
-  }
-  .mq-set {
-    display: flex;
-    flex: none;
-    align-items: center;
-    gap: 2.5rem;
-    padding-right: 2.5rem;
-    white-space: nowrap;
-  }
-  .mq-word {
-    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
-  }
-  .mq-word:nth-child(4n + 3) {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--color-ink);
-  }
-  .mq-sep {
-    flex: none;
-    width: 0.875rem;
-    height: 2.25rem;
-    background: var(--color-ink);
-  }
-  .mq-toggle {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    z-index: 2;
-    display: grid;
-    width: 2.75rem;
-    height: 2.75rem;
-    transform: translateY(-50%);
-    place-items: center;
-    cursor: pointer;
-    background: var(--color-ink);
-    color: var(--color-paper);
-  }
-  .mq-toggle .ico-play {
-    display: none;
-  }
-  .mq:has(input:checked) .ico-play {
-    display: block;
-  }
-  .mq:has(input:checked) .ico-pause {
-    display: none;
-  }
-  .mq:has(input:focus-visible) .mq-toggle {
-    outline: 3px solid var(--color-paper);
-    outline-offset: 2px;
-  }
-
   /* ---------- services ---------- */
   .row {
     position: relative;
@@ -536,11 +478,6 @@
     transform: translateY(9%);
   }
 }
-@keyframes mq {
-  to {
-    transform: translateX(-50%);
-  }
-}
 @keyframes wipe {
   from {
     clip-path: inset(0 0 100% 0);
@@ -622,18 +559,6 @@
   }
   .dim {
     animation: draw-x 1.1s var(--ease-in-out) 0.9s backwards;
-  }
-
-  .mq-track {
-    animation: mq 70s linear infinite;
-  }
-  .mq:has(input:checked) .mq-track {
-    animation-play-state: paused;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .mq:hover .mq-track {
-      animation-play-state: paused;
-    }
   }
 
   @supports (animation-timeline: view()) {
@@ -718,20 +643,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-media::after {
-    display: none;
-  }
-  .mq-set + .mq-set {
-    display: none;
-  }
-  .mq-set {
-    flex-wrap: wrap;
-    white-space: normal;
-    padding: 1.5rem 4.5rem 1.5rem 1.25rem;
-  }
-  .mq-track {
-    width: auto;
-  }
-  .mq-toggle {
     display: none;
   }
 }
