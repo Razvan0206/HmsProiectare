@@ -248,6 +248,18 @@
     }
   }
 
+  /* ---------- documents glossary ---------- */
+  .doc {
+    background: var(--color-brand);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .doc:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+
   /* ---------- process timeline ---------- */
   .tl {
     position: relative;

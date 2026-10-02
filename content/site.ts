@@ -25,6 +25,7 @@ export const site = {
   name: "HMS Proiectare",
   legalName: "HMS Proiectare SRL",
   tagline: "Arhitectură, design, inginerie, consultanță și construcții",
+  wordmark: "Proiectare Arhitectura Design", // as printed in the client's logo lockup
   street,
   zip,
   city,
@@ -77,7 +78,7 @@ export const site = {
       {
         title: "Documentații tehnice",
         text: "Documentația pentru autorizare, pentru organizarea execuției și proiectul tehnic, plus studii de fezabilitate, releveu și planuri urbanistice zonale.",
-        tags: ["DTAC", "DTOE", "PT", "SF", "RLV", "PUZ"],
+        tags: ["Autorizare", "Organizare execuție", "Proiect tehnic"],
       },
       {
         title: "Management de proiect și urmărire șantier",
@@ -94,6 +95,19 @@ export const site = {
         text: "Execuția lucrărilor pentru clădiri civile și private: case, clădiri rezidențiale, comerciale și industriale.",
         tags: ["Construcții noi", "Renovări", "Extinderi"],
       },
+    ],
+  },
+
+  documents: {
+    title: "Documentațiile pe care le întocmim",
+    intro: "Abrevierile din proiectare, pe înțelesul tuturor.",
+    items: [
+      { abbr: "DTAC", name: "Documentație tehnică pentru autorizarea construirii" },
+      { abbr: "DTOE", name: "Documentație tehnică pentru organizarea execuției" },
+      { abbr: "PT", name: "Proiect tehnic" },
+      { abbr: "SF", name: "Studiu de fezabilitate" },
+      { abbr: "RLV", name: "Releveu" },
+      { abbr: "PUZ", name: "Plan urbanistic zonal" }, // old site wrote "PUS"; PUZ is the correct abbreviation, client to confirm
     ],
   },
 

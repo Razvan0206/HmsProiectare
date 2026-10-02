@@ -9,5 +9,4 @@ next-env.d.ts
 scrape/
 .env*
 !.env.example
-496066439_*.jpg
 graphify-out/
