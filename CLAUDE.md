@@ -23,6 +23,7 @@ Business niche: **architecture-studio** · Seeded from RenovoGuidelines on 2026-
 - Document abbreviations (DTAC, DTOE, PT, SF, RLV, PUZ) live in the static `Documents` section; they used to scroll in a marquee.
 - No marquee / side-scrolling text: the user disliked it (2026-10-02). Do not add one.
 - Known limits: portfolio filter is CSS-only so it is not deep-linkable; Casa H gallery images are only 800 px wide on the old site (lightbox upscales); Firefox without scroll-driven animations shows everything static.
+- Logo is always shown in its true colors (orange + black bars): header and footer are paper-colored for that reason (black bars vanish on ink); icon and OG image use a white plate. Do not recolor the bars.
 - Deliberate deviations: alternating ink / paper / orange sections (client brand alternates orange and black); orange is fill only, never text on paper.
 - Demo runs on localhost only (`npm run dev`, or `npx next build && npx next start -p 3100`); `noindex` set. Push straight to `main`, commit author razvan.iuga02@gmail.com.
 - Placeholders still open: hours, CUI/Reg. Com., team, certificate copies, project details (grep `Aici vor veni`, `TODO client`). Confirm: insurer spelling ("Aliantz" as given), WhatsApp number, "Finalizat" status, client company names in project titles (HAI Extrusion, Picasso, Waterhouse, Bourgeois), "PUS" on old site corrected to PUZ.

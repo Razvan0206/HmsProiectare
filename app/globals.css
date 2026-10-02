@@ -123,6 +123,10 @@
     .btn-brand:hover {
       background: var(--color-paper);
     }
+    .on-paper .btn-brand:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
     .btn-ink:hover,
     .btn-line:hover {
       background: var(--color-paper);

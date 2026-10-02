@@ -20,7 +20,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   for (const [i, t] of [250, 700, 1300].entries()) { await sleep(Math.max(0, t - (Date.now() - t0))); await page.screenshot({ path: `${OUT}/${tag}_intro${i}.png` }); }
   await sleep(2500);
   await page.screenshot({ path: `${OUT}/${tag}_hero.png` });
-  const targets = [["stats", "section[aria-label='Portofoliu în cifre']"], ["marquee", ".mq"], ["servicii", "#servicii"], ["proces", "#proces"], ["proiecte", "#proiecte"], ["despre", "#despre"], ["contact", "#contact"]];
+  const targets = [["stats", "section[aria-label='Portofoliu în cifre']"], ["documentatii", "#documentatii"], ["servicii", "#servicii"], ["proces", "#proces"], ["proiecte", "#proiecte"], ["despre", "#despre"], ["contact", "#contact"]];
   for (const [name, sel] of targets) {
     await page.evaluate(async (sel) => {
       const el = document.querySelector(sel);
