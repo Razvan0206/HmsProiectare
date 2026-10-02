@@ -56,6 +56,20 @@ npm install -g @playwright/cli@latest     # [verified 0.1.22]; prints a harmless
 playwright-cli install --skills           # writes .claude/skills/playwright-cli/, adds .playwright-cli/ to .gitignore
 ```
 
+## Optional research and mapping tools (ask the user first; not installed by default)
+
+Both are Python tools. Install only when the task needs them, with the user's OK (global install rule in `CLAUDE.md`). Details, risks and when to use: `RESOURCES.md` section 11.
+
+```bash
+# Agent Reach: web/social research CLI (Twitter/X, Reddit, YouTube, GitHub, web search...)
+pipx install https://github.com/Panniantong/agent-reach/archive/main.zip
+agent-reach install --env=auto            # read-only check; never add --system without the user's explicit OK
+
+# Graphify: knowledge graph of a codebase and its docs
+uv tool install graphifyy                 # or: pipx install graphifyy
+graphify install --project                # skill inside the current repo only, not user-global
+```
+
 ## Design references (on demand, not installed per project)
 
 `references/awesome-design-md/` (VoltAgent, MIT, 150 files, 2.4 MB) is stored in this hub. In a client repo: `node scripts/fetch-design-md.mjs --list` then `node scripts/fetch-design-md.mjs <brand>`. Output goes to `design-references/` (gitignored). Study reasoning; never copy a brand's identity.
