@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 /* Identity: brand orange and black come from the HM bar logo (orange sampled as #fe9703).
-   Orange is a fill (bars, buttons, sections), never body text on paper (2:1 contrast). Corners are square everywhere. */
+   Orange is a fill (bars, buttons, sections), never body text on paper (2:1 contrast). Corners are square everywhere.
+   Motion: CSS only (keyframes, scroll-driven timelines, view transitions). Curves and durations follow Emil Kowalski's
+   skills: strong ease-out for entrances, ease-in-out for on-screen movement, linear for scroll-linked and constant motion.
+   Everything lives in @media (prefers-reduced-motion: no-preference); content is visible by default where a feature is unsupported. */
 @theme inline {
   --color-brand: #fe9703;
   --color-ink: #0f0f0e;
@@ -16,11 +19,15 @@
 
 :root {
   --focus: var(--color-ink);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @layer base {
   html {
     scroll-padding-top: 5.5rem;
+    scroll-padding-bottom: 4.5rem; /* mobile action bar */
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
@@ -53,6 +60,7 @@
 }
 
 @layer components {
+  /* ---------- tones ---------- */
   .tone-ink {
     --focus: var(--color-brand);
     background: var(--color-ink);
@@ -66,10 +74,11 @@
     background: var(--color-paper-2);
   }
 
+  /* ---------- type ---------- */
   .display {
     font-weight: 800;
     letter-spacing: -0.025em;
-    line-height: 1.02;
+    line-height: 1.04;
     text-wrap: balance;
   }
   .label {
@@ -83,8 +92,10 @@
     width: 3.5rem;
     height: 0.375rem;
     background: var(--color-brand);
+    transform-origin: left;
   }
 
+  /* ---------- buttons and links ---------- */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -92,43 +103,257 @@
     min-height: 3rem;
     padding: 0.75rem 1.5rem;
     font-weight: 600;
-    transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.16s ease-out;
   }
   .btn:active {
-    transform: translateY(1px);
+    transform: scale(0.97);
   }
   .btn-brand {
     background: var(--color-brand);
     color: var(--color-ink);
   }
-  .btn-brand:hover {
-    background: var(--color-paper);
-  }
   .btn-ink {
     background: var(--color-ink);
     color: var(--color-paper);
   }
-  .btn-ink:hover {
-    background: var(--color-paper);
-    color: var(--color-ink);
-  }
   .btn-line {
     box-shadow: inset 0 0 0 2px currentColor;
   }
-  .btn-line:hover {
-    background: var(--color-paper);
-    color: var(--color-ink);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-brand:hover {
+      background: var(--color-paper);
+    }
+    .btn-ink:hover,
+    .btn-line:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
   }
-
   .link {
     background: linear-gradient(var(--color-brand), var(--color-brand)) 0 100% / 100% 0.1875rem no-repeat;
     transition: background-size 0.18s ease;
   }
-  .link:hover {
-    background-size: 100% 100%;
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      background-size: 100% 100%;
+    }
   }
 
-  /* Portfolio filter: native radios + :has(), no JS. */
+  .phone {
+    background: linear-gradient(var(--color-ink), var(--color-ink)) 0 100% / 0 0.1em no-repeat;
+    transition: background-size 0.35s var(--ease-out);
+  }
+  .phone:focus-visible {
+    background-size: 100% 0.1em;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .phone:hover {
+      background-size: 100% 0.1em;
+    }
+  }
+
+  /* ---------- scroll progress (information, not decoration: always on where supported) ---------- */
+  .progress {
+    display: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    .progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
+      height: 3px;
+      background: var(--color-brand);
+      transform-origin: left;
+      animation: grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .hero-shade {
+    background:
+      linear-gradient(90deg, rgb(15 15 14 / 0.94) 0%, rgb(15 15 14 / 0.8) 34%, rgb(15 15 14 / 0.25) 70%, transparent 100%),
+      linear-gradient(0deg, rgb(15 15 14 / 0.7) 0%, transparent 32%);
+  }
+  @media (max-width: 767px) {
+    .hero-shade {
+      background: linear-gradient(0deg, rgb(15 15 14 / 0.96) 0%, rgb(15 15 14 / 0.78) 52%, rgb(15 15 14 / 0.35) 100%);
+    }
+  }
+  .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+  }
+  .line > span {
+    display: block;
+  }
+  .dim {
+    position: relative;
+    height: 1px;
+    flex: 1;
+    background: rgb(255 255 255 / 0.35);
+    transform-origin: right;
+  }
+  .dim::before,
+  .dim::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    width: 1px;
+    height: 11px;
+    background: rgb(255 255 255 / 0.55);
+  }
+  .dim::before {
+    left: 0;
+  }
+  .dim::after {
+    right: 0;
+  }
+
+  /* ---------- logo bars ---------- */
+  .logo-anim .lb,
+  .logo-view .lb {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+  }
+
+  /* ---------- marquee (one per page; pause control and reduced motion both stop it) ---------- */
+  .mq {
+    position: relative;
+    overflow: hidden;
+  }
+  .mq-track {
+    display: flex;
+    width: max-content;
+  }
+  .mq-set {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+    white-space: nowrap;
+  }
+  .mq-word {
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  }
+  .mq-word:nth-child(4n + 3) {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-ink);
+  }
+  .mq-sep {
+    flex: none;
+    width: 0.875rem;
+    height: 2.25rem;
+    background: var(--color-ink);
+  }
+  .mq-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    transform: translateY(-50%);
+    place-items: center;
+    cursor: pointer;
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .mq-toggle .ico-play {
+    display: none;
+  }
+  .mq:has(input:checked) .ico-play {
+    display: block;
+  }
+  .mq:has(input:checked) .ico-pause {
+    display: none;
+  }
+  .mq:has(input:focus-visible) .mq-toggle {
+    outline: 3px solid var(--color-paper);
+    outline-offset: 2px;
+  }
+
+  /* ---------- services ---------- */
+  .row {
+    position: relative;
+  }
+  .row::before,
+  .row::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    transform-origin: left;
+  }
+  .row::before {
+    background: var(--color-ink);
+  }
+  .row::after {
+    background: var(--color-brand);
+    height: 4px;
+    top: -1px;
+    transform: scaleX(0);
+    transition: transform 0.35s var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .row:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  /* ---------- process timeline ---------- */
+  .tl {
+    position: relative;
+  }
+  .tl-line,
+  .tl-fill {
+    position: absolute;
+    background: rgb(255 255 255 / 0.2);
+  }
+  .tl-fill {
+    background: var(--color-brand);
+    transform-origin: top left;
+  }
+  .tl-line,
+  .tl-fill {
+    left: 0.6875rem;
+    top: 0.75rem;
+    bottom: 0.75rem;
+    width: 2px;
+  }
+  @media (min-width: 768px) {
+    .tl-line,
+    .tl-fill {
+      left: 0.75rem;
+      right: 0.75rem;
+      top: 0.6875rem;
+      bottom: auto;
+      width: auto;
+      height: 2px;
+    }
+  }
+  .node {
+    position: relative;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-ink);
+    box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.4);
+  }
+  .node::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand);
+    transform: scale(0);
+  }
+
+  /* ---------- portfolio ---------- */
   .filters input {
     position: absolute;
     opacity: 0;
@@ -142,10 +367,15 @@
     cursor: pointer;
     box-shadow: inset 0 0 0 2px var(--color-ink);
     font-weight: 500;
-    transition: background-color 0.18s ease, color 0.18s ease;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.16s ease-out;
   }
-  .filters label:hover {
-    background: var(--color-paper-2);
+  .filters label:active {
+    transform: scale(0.97);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .filters label:hover {
+      background: var(--color-paper);
+    }
   }
   .filters label:has(input:checked) {
     background: var(--color-ink);
@@ -161,13 +391,6 @@
   .filters:has(#f-public:checked) ~ .proj-grid .proj:not([data-cat="public"]) {
     display: none;
   }
-
-  .proj-media img {
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .proj:hover .proj-media img {
-    transform: scale(1.035);
-  }
   .proj-bar {
     display: block;
     height: 0.375rem;
@@ -175,43 +398,340 @@
     background: var(--color-brand);
     transform: scaleX(0.1);
     transform-origin: left;
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s var(--ease-out);
   }
-  .proj:hover .proj-bar,
   .proj:focus-within .proj-bar {
     transform: scaleX(1);
   }
+  .proj-open {
+    transition: transform 0.25s var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .proj-open {
+      transform: translateY(100%);
+    }
+    .proj:hover .proj-open,
+    .proj:focus-within .proj-open {
+      transform: none;
+    }
+    .proj:hover .proj-bar {
+      transform: scaleX(1);
+    }
+    .proj-media img {
+      transition: transform 0.7s var(--ease-out);
+    }
+    .proj:hover .proj-media img {
+      transform: scale(1.04);
+    }
+  }
 
-  /* Scroll reveal: content is visible by default where scroll timelines are unsupported. */
+  /* ---------- gallery and lightbox ---------- */
+  .shot {
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .shot img {
+      transition: transform 0.7s var(--ease-out);
+    }
+    .shot:hover img {
+      transform: scale(1.025);
+    }
+  }
+  .lightbox {
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    padding: 0;
+    background: #0a0a09;
+    color: var(--color-paper);
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+    opacity: 0;
+    transition: opacity 0.2s var(--ease-out), overlay 0.2s allow-discrete, display 0.2s allow-discrete;
+  }
+  .lightbox[open] {
+    opacity: 1;
+  }
+  @starting-style {
+    .lightbox[open] {
+      opacity: 0;
+    }
+  }
+  .lightbox::backdrop {
+    background: transparent;
+  }
+
+  /* ---------- mobile menu ---------- */
+  .menu {
+    margin: 0 0 0 auto;
+    inset: 0 0 0 auto;
+    width: min(26rem, 100%);
+    height: 100dvh;
+    max-height: none;
+    transform: translateX(100%);
+    transition: transform 0.28s var(--ease-drawer), overlay 0.28s allow-discrete, display 0.28s allow-discrete;
+  }
+  .menu[open] {
+    transform: none;
+  }
+  @starting-style {
+    .menu[open] {
+      transform: translateX(100%);
+    }
+  }
+  .menu::backdrop {
+    background: rgb(0 0 0 / 0.6);
+    opacity: 0;
+    transition: opacity 0.28s var(--ease-out), overlay 0.28s allow-discrete, display 0.28s allow-discrete;
+  }
+  .menu[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    .menu[open]::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+/* ======================= motion ======================= */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+}
+@keyframes line-up {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes bar-in {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes uncover {
+  to {
+    transform: scaleX(0);
+  }
+}
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+  }
+}
+@keyframes par {
+  to {
+    transform: translateY(9%);
+  }
+}
+@keyframes mq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes node-on {
+  to {
+    transform: scale(1);
+  }
+}
+/* pop-0..4 are identical on purpose: a different animation-name restarts the animation when the filter changes */
+@keyframes pop-0 {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+@keyframes pop-1 {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+@keyframes pop-2 {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+@keyframes pop-3 {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+@keyframes pop-4 {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* logo bars assemble once on first load (the header persists across routes) */
+  .logo-anim .lb {
+    animation: bar-in 0.6s var(--ease-out) backwards;
+    animation-delay: calc(var(--i) * 70ms + 100ms);
+  }
+
+  /* hero: an ink panel wipes off the (already painted) photo, the photo settles, the headline rises line by line */
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    transform-origin: right;
+    animation: uncover 1s var(--ease-in-out) 0.1s forwards;
+  }
+  .hero-img {
+    animation: settle 2s var(--ease-out) backwards;
+  }
+  .hero-in {
+    animation: rise 0.7s var(--ease-out) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .line > span {
+    animation: line-up 0.9s var(--ease-out) backwards;
+    animation-delay: calc(var(--i) * 90ms + 450ms);
+  }
+  .dim {
+    animation: draw-x 1.1s var(--ease-in-out) 0.9s backwards;
+  }
+
+  .mq-track {
+    animation: mq 70s linear infinite;
+  }
+  .mq:has(input:checked) .mq-track {
+    animation-play-state: paused;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .mq:hover .mq-track {
+      animation-play-state: paused;
+    }
+  }
+
   @supports (animation-timeline: view()) {
     .reveal {
       animation: rise linear backwards;
       animation-timeline: view();
       animation-range: entry 0% entry 30%;
     }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        animation: none;
+    .rule {
+      animation: draw-x linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+    .row::before {
+      animation: draw-x linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    .wipe {
+      animation: wipe linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+    .hero-par {
+      animation: par linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+    /* footer logo: the bars grow in one after another as the footer scrolls into view */
+    .logo-view .lb {
+      animation: bar-in linear backwards;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i) * 7%) entry calc(55% + var(--i) * 7%);
+    }
+    .tl-fill {
+      animation: draw-y linear both;
+      animation-timeline: view();
+      animation-range: entry 55% cover 55%;
+    }
+    @media (min-width: 768px) {
+      .tl-fill {
+        animation-name: draw-x;
+        animation-range: entry 45% cover 25%;
       }
     }
-  }
-  .hero-in {
-    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-in {
-      animation: none;
+    .node::after {
+      animation: node-on linear both;
+      animation-timeline: view();
+      animation-range: entry calc(40% + var(--i) * 6%) entry calc(52% + var(--i) * 6%);
     }
-    .proj-media img,
-    .proj-bar {
-      transition: none;
-    }
+  }
+
+  /* portfolio filter: changing the animation name replays it for every card that is shown */
+  .filters:has(#f-toate:checked) ~ .proj-grid .proj > a {
+    animation: pop-0 0.4s var(--ease-out) backwards;
+  }
+  .filters:has(#f-locuinte:checked) ~ .proj-grid .proj > a {
+    animation: pop-1 0.4s var(--ease-out) backwards;
+  }
+  .filters:has(#f-interioare:checked) ~ .proj-grid .proj > a {
+    animation: pop-2 0.4s var(--ease-out) backwards;
+  }
+  .filters:has(#f-comercial:checked) ~ .proj-grid .proj > a {
+    animation: pop-3 0.4s var(--ease-out) backwards;
+  }
+  .filters:has(#f-public:checked) ~ .proj-grid .proj > a {
+    animation: pop-4 0.4s var(--ease-out) backwards;
+  }
+
+  /* mobile menu links */
+  .menu[open] li {
+    animation: rise 0.4s var(--ease-out) backwards;
+    animation-delay: calc(var(--i) * 50ms + 150ms);
+  }
+
+  /* shared element: the project cover morphs into the first gallery image */
+  ::view-transition-group(.proj-morph) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   }
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem);
+@media (prefers-reduced-motion: reduce) {
+  .hero-media::after {
+    display: none;
+  }
+  .mq-set + .mq-set {
+    display: none;
+  }
+  .mq-set {
+    flex-wrap: wrap;
+    white-space: normal;
+    padding: 1.5rem 4.5rem 1.5rem 1.25rem;
+  }
+  .mq-track {
+    width: auto;
+  }
+  .mq-toggle {
+    display: none;
   }
 }

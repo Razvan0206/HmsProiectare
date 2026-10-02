@@ -5,13 +5,15 @@ import images from "./project-images.json";
 
 export type Photo = { src: string; w: number; h: number };
 export type CategoryId = "locuinte" | "interioare" | "comercial" | "public";
+export type Media = "foto" | "randare" | "mixt";
 export type Project = {
   slug: string;
   title: string;
   category: CategoryId;
   location: string;
-  kind: string; // what the images are: render or photo
+  media: Media; // what the images are: photos of the built work, 3D renders, or both
   images: Photo[]; // first = cover
+  inProgress?: boolean; // old site marks it "in desfasurare"
 };
 
 const digits = "40747328650";
@@ -27,7 +29,7 @@ export const site = {
   zip,
   city,
   address: `${street}, ${zip} ${city}`,
-  phone: "0747 328 650",
+  phone: "0747 328 650", // non-breaking spaces so the number never wraps
   phoneHref: `tel:+${digits}`,
   whatsappHref: `https://wa.me/${digits}`, // TODO client: confirm this number is on WhatsApp
   email: "office@hms-proiectare.ro",
@@ -40,20 +42,33 @@ export const site = {
 
   nav: [
     { label: "Servicii", href: "/#servicii" },
+    { label: "Proces", href: "/#proces" },
     { label: "Proiecte", href: "/#proiecte" },
     { label: "Despre", href: "/#despre" },
     { label: "Contact", href: "/#contact" },
   ],
 
   hero: {
-    title: "Arhitectură, proiectare și construcții, de la concept la finalizare",
+    titleLines: ["Proiectăm și construim,", "de la concept la finalizare"],
     subtitle: "Arhitecți, ingineri și constructori lucrează împreună la case, clădiri de birouri, hale și amenajări interioare, la Arad și în țară.",
-    cta: "Sună la 0747 328 650",
+    cta: "Sună la 0747 328 650",
     ctaSecondary: "Vezi proiectele",
-    image: { src: "/hero.webp", w: 1024, h: 576 } as Photo,
-    imageAlt: "Casa G, randare 3D: terasa din lemn și foișorul în amurg",
-    caption: "Casa G · Arad · randare 3D",
-    status: "Certificată ISO 9001 și ISO 14001",
+    image: { src: "/hero.webp", w: 1920, h: 1080 } as Photo,
+    imageAlt: "Casa H din Arad: fațadă cu ferestre arcuite și acoperiș din țiglă, grădină cu flori",
+    caption: "Casa H · Arad · fotografie",
+  },
+
+  // Real numbers from the old site's portfolio (scraped 2026-10-01) and the client's own text (ISO).
+  stats: [
+    { value: 288, label: "proiecte în portofoliu" },
+    { value: 120, label: "marcate finalizate" },
+    { value: 2, label: "certificări ISO: 9001 și 14001" },
+  ],
+
+  marquee: {
+    label: "Documentații și servicii",
+    pause: "Oprește animația",
+    items: ["DTAC", "DTOE", "Proiect tehnic", "Studiu de fezabilitate", "Releveu", "PUZ", "Randări 3D", "Design interior", "Urmărire șantier", "Management de proiect", "Construcții"],
   },
 
   services: {
@@ -88,10 +103,28 @@ export const site = {
     ],
   },
 
+  process: {
+    title: "De la schiță la șantier",
+    // Order and wording come from the old site's "Expertiză" page and the Facebook text; client to confirm.
+    steps: [
+      { title: "Concept", text: "Imagini 3D, plan de situație, planuri, fațade. La interioare: propuneri de mobilare și alegerea finisajelor." },
+      { title: "Documentații", text: "DTAC pentru autorizare, DTOE pentru organizarea execuției, proiect tehnic și, la nevoie, studiu de fezabilitate." },
+      { title: "Execuție", text: "Construcția, renovarea sau extinderea clădirii, realizată de echipa de constructori." },
+      { title: "Urmărire șantier", text: "Execuția se verifică față de proiectul tehnic: fundații, stâlpi, centuri, grinzi, planșee." },
+    ],
+    note: "Management de proiect pe tot parcursul: proiectul se împarte pe faze, iar fazele se supraveghează după cerințele și bugetul beneficiarului.",
+  },
+
   projects: {
     title: "Proiecte",
-    intro: "O selecție din cele 288 de proiecte din portofoliul HMS, dintre care 120 sunt marcate finalizate pe site-ul actual.",
+    intro: "O selecție din cele 288 de proiecte din portofoliul HMS. Fiecare cartonaș arată dacă imaginile sunt fotografii sau randări.",
+    mediaLabels: { foto: "Fotografii", randare: "Randări 3D", mixt: "Randări și foto" } as Record<Media, string>,
+    open: "Vezi proiectul",
+    gallery: { open: "Mărește imaginea", close: "Închide", prev: "Imaginea anterioară", next: "Imaginea următoare" },
+    prev: "Proiectul anterior",
+    next: "Următorul proiect",
     all: "Toate",
+    allProjects: "Toate proiectele",
     categories: [
       { id: "locuinte", label: "Locuințe" },
       { id: "interioare", label: "Design interior" },
@@ -131,23 +164,26 @@ export const site = {
   },
 };
 
-const p = (slug: string, title: string, category: CategoryId, location: string, kind: string): Project => ({
-  slug, title, category, location, kind, images: (images as Record<string, Photo[]>)[slug],
+const p = (slug: string, title: string, category: CategoryId, location: string, media: Media): Project => ({
+  slug, title, category, location, media, images: (images as Record<string, Photo[]>)[slug],
 });
 
 export const projects: Project[] = [
-  p("casa-g", "Casa G", "locuinte", "Arad", "randări 3D"),
-  p("hai-extrusion", "Fabrică de extrudare a profilelor din aluminiu, HAI Extrusion", "comercial", "Arad", "randări 3D"),
-  p("penthouse-bourgeois", "Amenajare penthouse, Bourgeois Residence", "interioare", "Arad", "randări 3D"),
-  p("casa-p", "Casa P", "locuinte", "Arad", "randări 3D"),
-  p("birouri-oradea", "Clădire de birouri", "comercial", "Oradea", "randări 3D"),
-  p("picasso-lounge", "Recosmetizare Caffe Lounge Picasso", "interioare", "Arad", "randări 3D și fotografii"),
-  p("bloc-penthouse", "Bloc de locuințe cu penthouse", "locuinte", "Timișoara", "fotografii"),
-  p("hala-dumbravita", "Hală industrială cu birouri, showroom și depozitare", "comercial", "Dumbrăvița, Timiș", "fotografii de șantier"),
-  p("duplex-p-1e", "Duplex P+1E", "locuinte", "Vladimirescu, Arad", "randări 3D"),
-  p("waterhouse", "Amenajare clădire de birouri, Waterhouse", "interioare", "Arad", "fotografii"),
-  p("piata-agroalimentara", "Piață agroalimentară, Design & Build", "public", "județul Arad", "randări 3D"),
-  p("bloc-anl", "Bloc de locuințe ANL", "locuinte", "Arad", "modele 3D"),
+  { ...p("casa-h", "Casa H", "locuinte", "Arad", "foto"), inProgress: true },
+  p("hai-extrusion", "Fabrică de extrudare a profilelor din aluminiu, HAI Extrusion", "comercial", "Arad", "randare"),
+  p("casa-giarmata", "Casa Giarmata", "locuinte", "Giarmata, Timiș", "foto"),
+  p("penthouse-bourgeois", "Amenajare penthouse, Bourgeois Residence", "interioare", "Arad", "randare"),
+  p("casa-g", "Casa G", "locuinte", "Arad", "randare"),
+  p("birouri-oradea", "Clădire de birouri", "comercial", "Oradea", "randare"),
+  p("scena-covasant", "Scenă pentru evenimente culturale", "public", "Covăsânț, județul Arad", "foto"),
+  p("picasso-lounge", "Recosmetizare Caffe Lounge Picasso", "interioare", "Arad", "mixt"),
+  p("casa-p", "Casa P", "locuinte", "Arad", "randare"),
+  p("bloc-penthouse", "Bloc de locuințe cu penthouse", "locuinte", "Timișoara", "foto"),
+  p("hala-dumbravita", "Hală industrială cu birouri, showroom și depozitare", "comercial", "Dumbrăvița, Timiș", "foto"),
+  p("waterhouse", "Amenajare clădire de birouri, Waterhouse", "interioare", "Arad", "foto"),
+  p("duplex-p-1e", "Duplex P+1E", "locuinte", "Vladimirescu, Arad", "randare"),
+  p("piata-agroalimentara", "Piață agroalimentară, Design & Build", "public", "județul Arad", "randare"),
+  p("bloc-anl", "Bloc de locuințe ANL", "locuinte", "Arad", "randare"),
 ];
 
 export const categoryLabel = (id: CategoryId) => site.projects.categories.find((c) => c.id === id)!.label;

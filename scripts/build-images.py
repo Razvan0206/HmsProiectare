@@ -7,6 +7,9 @@ from PIL import Image, ImageDraw
 RAW = "scrape/raw"
 # slug -> (project id on the old site, file indexes; first one is the cover)
 PICKS = {
+    "casa-h":              (26,  [46, 0, 33, 12, 40, 48, 26, 2]),
+    "casa-giarmata":       (8,   [22, 9, 2, 8, 6, 3, 15, 10]),
+    "scena-covasant":      (51,  [1, 0, 2]),
     "casa-g":              (226, [7, 0, 8, 3, 6, 9]),
     "casa-p":              (254, [0, 3, 1, 2, 8, 9]),
     "duplex-p-1e":         (160, [2, 3, 6, 5, 8, 9]),
@@ -42,8 +45,8 @@ for slug, (pid, idx) in PICKS.items():
 os.makedirs("content", exist_ok=True)
 json.dump(out, open("content/project-images.json", "w"), indent=1)
 
-hero = fit(Image.open(f"{RAW}/p226/" + [f for f in os.listdir(f"{RAW}/p226") if f.startswith("07-")][0]), 2000)
-save(hero, "public/hero.webp", 80)
+hero = fit(Image.open(f"{RAW}/brand/heredea-marian-3.jpg"), 1920)
+save(hero, "public/hero.webp", 78)
 print("hero", hero.size)
 save(fit(Image.open(f"{RAW}/brand/Acreditare.jpg"), 900), "public/acreditare.webp", 82)
 

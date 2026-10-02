@@ -14,10 +14,8 @@ export function Services() {
         </div>
         <ol className="lg:col-span-8">
           {s.items.map((it) => (
-            <li key={it.title} className="reveal grid gap-4 border-t-2 border-ink py-8 md:grid-cols-[1fr_1.4fr] md:gap-10">
-              <h3 className="display text-xl md:text-2xl">
-                {it.title}
-              </h3>
+            <li key={it.title} className="row reveal grid gap-4 py-8 md:grid-cols-[1fr_1.4fr] md:gap-10">
+              <h3 className="display text-xl md:text-2xl">{it.title}</h3>
               <div>
                 <p className="max-w-[60ch]">{it.text}</p>
                 <ul className="mt-4 flex flex-wrap gap-2" aria-label="Livrabile">

@@ -1,4 +1,105 @@
 {
+ "casa-h": [
+  {
+   "src": "/projects/casa-h/01.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-h/02.webp",
+   "w": 800,
+   "h": 450
+  },
+  {
+   "src": "/projects/casa-h/03.webp",
+   "w": 1024,
+   "h": 488
+  },
+  {
+   "src": "/projects/casa-h/04.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-h/05.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-h/06.webp",
+   "w": 1024,
+   "h": 576
+  },
+  {
+   "src": "/projects/casa-h/07.webp",
+   "w": 1024,
+   "h": 458
+  },
+  {
+   "src": "/projects/casa-h/08.webp",
+   "w": 1024,
+   "h": 576
+  }
+ ],
+ "casa-giarmata": [
+  {
+   "src": "/projects/casa-giarmata/01.webp",
+   "w": 1024,
+   "h": 768
+  },
+  {
+   "src": "/projects/casa-giarmata/02.webp",
+   "w": 1024,
+   "h": 768
+  },
+  {
+   "src": "/projects/casa-giarmata/03.webp",
+   "w": 800,
+   "h": 598
+  },
+  {
+   "src": "/projects/casa-giarmata/04.webp",
+   "w": 1024,
+   "h": 768
+  },
+  {
+   "src": "/projects/casa-giarmata/05.webp",
+   "w": 800,
+   "h": 600
+  },
+  {
+   "src": "/projects/casa-giarmata/06.webp",
+   "w": 800,
+   "h": 598
+  },
+  {
+   "src": "/projects/casa-giarmata/07.webp",
+   "w": 768,
+   "h": 768
+  },
+  {
+   "src": "/projects/casa-giarmata/08.webp",
+   "w": 1024,
+   "h": 765
+  }
+ ],
+ "scena-covasant": [
+  {
+   "src": "/projects/scena-covasant/01.webp",
+   "w": 1024,
+   "h": 765
+  },
+  {
+   "src": "/projects/scena-covasant/02.webp",
+   "w": 800,
+   "h": 800
+  },
+  {
+   "src": "/projects/scena-covasant/03.webp",
+   "w": 800,
+   "h": 597
+  }
+ ],
  "casa-g": [
   {
    "src": "/projects/casa-g/01.webp",

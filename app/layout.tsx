@@ -42,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main" className="tone-brand sr-only z-50 px-4 py-3 font-semibold focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
           Sari la conținut
         </a>
+        <div className="progress" aria-hidden />
         <Header />
         <main id="main">{children}</main>
         <Footer />

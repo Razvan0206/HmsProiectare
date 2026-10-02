@@ -8,8 +8,8 @@ export function Header() {
     <header className="tone-ink sticky top-0 z-40 border-b border-white/10">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-6 px-5 md:px-8">
         <Link href="/" className="flex min-h-11 items-center gap-3" aria-label={`${site.name}, prima pagină`}>
-          <Logo className="h-9" bars="#3a3a37" />
-          <span className="display hidden text-lg sm:block">
+          <Logo className="h-9 w-auto" bars="#3a3a37" animate />
+          <span translate="no" className="display hidden text-lg sm:block">
             HMS <span className="font-normal text-muted-on-ink">Proiectare</span>
           </span>
         </Link>

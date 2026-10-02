@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import type { CSSProperties } from "react";
 
 export function MobileMenu({ items }: { items: { label: string; href: string }[] }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -20,7 +21,7 @@ export function MobileMenu({ items }: { items: { label: string; href: string }[]
         ref={ref}
         aria-label="Meniu"
         onClick={(e) => e.target === ref.current && ref.current?.close()}
-        className="tone-ink fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overscroll-contain p-6 backdrop:bg-black/60"
+        className="menu tone-ink fixed overscroll-contain p-6"
       >
         <form method="dialog" className="flex justify-end">
           <button aria-label="Închide meniul" className="flex size-12 items-center justify-center text-3xl leading-none">
@@ -29,13 +30,9 @@ export function MobileMenu({ items }: { items: { label: string; href: string }[]
         </form>
         <nav aria-label="Meniu mobil">
           <ul className="mt-6 grid gap-2">
-            {items.map((i) => (
-              <li key={i.href}>
-                <a
-                  href={i.href}
-                  onClick={() => ref.current?.close()}
-                  className="display block border-t-2 border-white/15 py-4 text-3xl"
-                >
+            {items.map((i, n) => (
+              <li key={i.href} style={{ "--i": n } as CSSProperties}>
+                <a href={i.href} onClick={() => ref.current?.close()} className="display block border-t-2 border-white/15 py-4 text-3xl">
                   {i.label}
                 </a>
               </li>

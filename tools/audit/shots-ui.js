@@ -1,0 +1,38 @@
+// Interaction screenshots: mobile menu open, lightbox open, footer, card click navigation (view transition) without errors.
+const puppeteer = require("puppeteer-core");
+const BASE = process.env.BASE_URL || "http://localhost:3100/";
+const CHROME = process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+(async () => {
+  const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--disable-gpu"] });
+  const errors = [];
+  const m = await browser.newPage();
+  m.on("pageerror", (e) => errors.push(e.message));
+  m.on("console", (x) => x.type() === "error" && errors.push(x.text().slice(0, 200)));
+  await m.setViewport({ width: 390, height: 844, isMobile: true, deviceScaleFactor: 2 });
+  await m.goto(BASE, { waitUntil: "networkidle0" });
+  await m.click('button[aria-label="Deschide meniul"]');
+  await sleep(700);
+  await m.screenshot({ path: "out/m_menu.png" });
+  const d = await browser.newPage();
+  d.on("pageerror", (e) => errors.push(e.message));
+  d.on("console", (x) => x.type() === "error" && errors.push(x.text().slice(0, 200)));
+  await d.setViewport({ width: 1280, height: 800 });
+  await d.goto(BASE, { waitUntil: "networkidle0" });
+  await d.evaluate(() => document.getElementById("proiecte").scrollIntoView());
+  await sleep(1200);
+  await d.click(".proj a");
+  await d.waitForFunction(() => location.pathname.startsWith("/proiecte/"), { timeout: 8000 });
+  await sleep(1200);
+  console.log("navigated to", await d.evaluate(() => location.pathname));
+  await d.click(".shot");
+  await sleep(500);
+  await d.screenshot({ path: "out/d_lightbox.png" });
+  await d.keyboard.press("Escape");
+  await sleep(300);
+  await d.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  await sleep(1500);
+  await d.screenshot({ path: "out/d_footer.png" });
+  console.log(errors.length ? [...new Set(errors)].join("\n") : "no errors");
+  await browser.close();
+})();
