@@ -12,7 +12,8 @@ Business niche: **architecture-studio** · Seeded from RenovoGuidelines on 2026-
 1. `guidelines/00-START-HERE.md` (runbook) and `guidelines/03-workflow.md` (phase gates).
 2. `guidelines/niches/architecture-studio.md` if it exists; otherwise create it from `guidelines/niches/_TEMPLATE.md` before designing sections.
 3. `guidelines/10-romania-legal-local.md` (footer data, cookies/GDPR, shop and payment rules) and `guidelines/11-capability-catalog.md` (tools for forms, CMS, booking, shop).
-4. `guidelines/02-tool-routing.md`: which tool to use when (ui-ux-pro-max, design-taste-frontend, redesign-skill, web-design-guidelines, playwright-cli, design references).
+4. `guidelines/12-lessons-hms-proiectare.md` (case study: scraping, logo, motion, verification, pitfalls).
+5. `guidelines/02-tool-routing.md`: which tool to use when (ui-ux-pro-max, design-taste-frontend, redesign-skill, web-design-guidelines, playwright-cli, design references).
 
 ## Project decisions (fill in as they are made)
 
